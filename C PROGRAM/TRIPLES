@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+// Structure to represent a triple
+typedef struct {
+    char op;  // Operator (+, -, *, /, =, etc.)
+    char arg1[10];  // First operand
+    char arg2[10];  // Second operand
+    char result[10];  // Result variable
+} Triple;
+
+// Function to generate a triple
+Triple createTriple(char op, const char *arg1, const char *arg2, const char *result) {
+    Triple triple;
+    triple.op = op;
+    snprintf(triple.arg1, sizeof(triple.arg1), "%s", arg1);
+    snprintf(triple.arg2, sizeof(triple.arg2), "%s", arg2);
+    snprintf(triple.result, sizeof(triple.result), "%s", result);
+    return triple;
+}
+
+// Function to print a triple
+void printTriple(Triple triple) {
+    printf("(%c, %s, %s, %s)\n", triple.op, triple.arg1, triple.arg2, triple.result);
+}
+
+int main() {
+    // Example triples
+    Triple triple1 = createTriple('+', "a", "b", "t1");
+    Triple triple2 = createTriple('*', "t1", "c", "t2");
+    Triple triple3 = createTriple('=', "t2", "", "result");
+
+    // Print the triples
+    printTriple(triple1);
+    printTriple(triple2);
+    printTriple(triple3);
+
+    return 0;
+}
